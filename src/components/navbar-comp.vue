@@ -32,9 +32,12 @@
 
       <div class="navbar-end">
         <span v-if="!isLoggedIn" class="navbar-item">
+          <a class="navbar-item button accNav" @click="openProvince()"
+          >Province</a
+          >
           <a class="navbar-item button accNav is-info" @click="openSignup()">
             Sign Up</a
-            >
+          >
           <a class="navbar-item button accNav" @click="openLogin()">Log In</a>
         </span>
 
@@ -90,6 +93,9 @@ export default {
     },
     openSignup() {
       this.modalComp = () => import("@/components/signup-form")
+    },
+    openProvince() {
+      this.modalComp = () => import("@/components/province-form")
     },
     openLogin() {
       this.modalComp = () => import("@/components/login-form")
