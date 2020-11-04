@@ -1,43 +1,35 @@
 <template>
   <div>
-    <h1 class="title has-text-centered">Login</h1>
+    <h1 class="title has-text-centered">Province/County</h1>
     <form id="loginform" @submit.prevent="login">
       <b-field label="Province">
         <FormulateInput
+          id="province"
           v-model="emailAddress"
           type="select"
-          name="email"
-          validation="required|email"
+          name="province"
           placeholder="Select province"
           :options="provincesData"
-          @focus="loadData"
+          @click="loadData"
+          @change="loadCountiesData"
         />
       </b-field>
-
-      <b-field label="Password">
+      <b-field label="County">
         <FormulateInput
-          v-model="password"
-          type="password"
-          name="password"
-          placeholder="••••••••••"
-          validation="required|min:6,length"
-          validation-name="Password"
+          v-model="emailAddress"
+          type="select"
+          name="county"
+          placeholder="Select county"
+          :options="countiesData"
         />
       </b-field>
 
       <p v-for="err in errors" :key="err" class="error">{{ err }}</p>
 
       <p class="control">
-        <button id="submitbutton" class="button is-primary">Login</button>
+        <button id="submitbutton" class="button is-primary">Submit</button>
       </p>
     </form>
-    <router-link to="/signup" @click.native="closeModal()"
-    >Create new account</router-link
-    >
-    <br >
-    <router-link to="/reset" @click.native="closeModal()"
-    >Forget your password?</router-link
-    >
   </div>
 </template>
 
@@ -57,6 +49,8 @@ export default {
         { value: 2, label: "Sem" },
         { value: 3, label: "Maz" },
       ],
+      countiesData: null,
+      province: null,
     }
   },
   beforeCreate() {},
@@ -66,18 +60,32 @@ export default {
   computed: {},
   methods: {
     loadData() {
-      console.log("hello-vue")
-      //this.provincesData= [{value:4, label:"Aza"},{ value:5, label:"Kho"}]
+      //console.log("hello-vue")
       this.$bypropAPI
         .province()
         .then((res) => {
-          console.log("res " + res.data)
+          //console.log("res " + res.data)
           this.provincesData = res.data.map(function (item) {
             return { value: item.id, label: item.name }
           })
         })
         .catch(() => {
-          this.errors = ["Incorrect email or password"]
+          this.errors = ["province API Error"]
+        })
+    },
+    loadCountiesData() {
+      let provinceId = this.province
+      console.log("loadCountiesData " + provinceId)
+      this.$bypropAPI
+        .county(provinceId)
+        .then((res) => {
+          console.log("res " + res.data)
+          this.countiesData = res.data.map(function (item) {
+            return { value: item.id, label: item.name }
+          })
+        })
+        .catch(() => {
+          this.errors = ["county API Error"]
         })
     },
     login() {

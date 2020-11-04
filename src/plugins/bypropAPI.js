@@ -11,7 +11,15 @@ const bypropFunctions = {
     return HTTP()
       .get("/v1/common/province")
       .then((res) => {
-        console.log("return API " + res)
+        //console.log("return API " + res)
+        return res
+      })
+  },
+  county: function (provinceId) {
+    return HTTP()
+      .get(`/v1/common/county?provinceId=${provinceId}`)
+      .then((res) => {
+        //console.log("return API " + res)
         return res
       })
   },
