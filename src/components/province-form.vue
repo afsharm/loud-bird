@@ -1,11 +1,10 @@
 <template>
   <div>
     <h1 class="title has-text-centered">Province/County</h1>
-    <form id="loginform" @submit.prevent="login">
+    <form id="provinceform" @submit.prevent="login">
       <b-field label="Province">
         <FormulateInput
           id="province"
-          v-model="emailAddress"
           type="select"
           name="province"
           placeholder="Select province"
@@ -16,7 +15,6 @@
       </b-field>
       <b-field label="County">
         <FormulateInput
-          v-model="emailAddress"
           type="select"
           name="county"
           placeholder="Select county"
@@ -35,25 +33,14 @@
 
 <script>
 export default {
-  name: "Loginform",
+  name: "Provinceform",
   components: {},
-  // props: [],
   mixins: [],
   data() {
     return {
-      emailAddress: null,
-      password: null,
       errors: [],
-      provincesData: [
-        { value: 1, label: "Teh" },
-        { value: 2, label: "Sem" },
-        { value: 3, label: "Maz" },
-      ],
-      countiesData: [
-        { value: 1, label: "A1" },
-        { value: 2, label: "A2" },
-        { value: 3, label: "A3" },
-      ],
+      provincesData: null,
+      countiesData: null,
       province: null,
       provinceId: null,
     }
@@ -87,36 +74,6 @@ export default {
         })
         .catch(() => {
           this.errors = ["county API Error"]
-        })
-    },
-    login() {
-      const cleanData = this.$accountAPI.cleanData({
-        emailAddress: this.emailAddress,
-        password: this.password,
-      })
-
-      if (cleanData.errors.length >= 1) {
-        this.errors = cleanData.errors
-        return
-      }
-      this.errors = []
-      this.$accountAPI
-        .login(cleanData)
-        .then(() => {
-          this.$buefy.toast.open({
-            duration: 2000,
-            message: "Login Successful",
-            position: "is-top",
-            type: "is-success",
-          })
-          this.$emit("exitModal", cleanData)
-
-          if (this.$router.currentRoute.path === "/login") {
-            this.$router.push("/")
-          }
-        })
-        .catch(() => {
-          this.errors = ["Incorrect email or password"]
         })
     },
     clearVals() {
