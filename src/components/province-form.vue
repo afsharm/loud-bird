@@ -52,6 +52,8 @@ export default {
   computed: {},
   methods: {
     loadData() {
+      if (this.provincesData !== null) return
+      console.log("here")
       this.$bypropAPI
         .province()
         .then((res) => {
