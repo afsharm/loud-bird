@@ -11,7 +11,7 @@
           placeholder="Select province"
           :options="provincesData"
           @click="loadData"
-          @change="loadCountiesData"
+          @change="loadCountiesData($event.target.selectedIndex)"
         />
       </b-field>
       <b-field label="County">
@@ -49,8 +49,13 @@ export default {
         { value: 2, label: "Sem" },
         { value: 3, label: "Maz" },
       ],
-      countiesData: null,
+      countiesData: [
+        { value: 1, label: "A1" },
+        { value: 2, label: "A2" },
+        { value: 3, label: "A3" },
+      ],
       province: null,
+      provinceId: null,
     }
   },
   beforeCreate() {},
@@ -60,11 +65,9 @@ export default {
   computed: {},
   methods: {
     loadData() {
-      //console.log("hello-vue")
       this.$bypropAPI
         .province()
         .then((res) => {
-          //console.log("res " + res.data)
           this.provincesData = res.data.map(function (item) {
             return { value: item.id, label: item.name }
           })
@@ -73,13 +76,11 @@ export default {
           this.errors = ["province API Error"]
         })
     },
-    loadCountiesData() {
-      let provinceId = this.province
-      console.log("loadCountiesData " + provinceId)
+    loadCountiesData(selectedIndex) {
+      let provinceId = this.provincesData[selectedIndex - 1].value
       this.$bypropAPI
         .county(provinceId)
         .then((res) => {
-          console.log("res " + res.data)
           this.countiesData = res.data.map(function (item) {
             return { value: item.id, label: item.name }
           })
