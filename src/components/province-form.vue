@@ -3,23 +3,21 @@
     <h1 class="title has-text-centered">Province/County</h1>
     <form id="provinceform" @submit.prevent="login">
       <b-field label="Province">
-        <FormulateInput
-          id="province"
-          type="select"
-          name="province"
-          placeholder="Select province"
-          :options="provincesData"
+        <select
           @click="loadData"
           @change="loadCountiesData($event.target.selectedIndex)"
-        />
+        >
+          <option v-for="p in provincesData" :key="p.id">
+            {{ p.name }}
+          </option>
+        </select>
       </b-field>
       <b-field label="County">
-        <FormulateInput
-          type="select"
-          name="county"
-          placeholder="Select county"
-          :options="countiesData"
-        />
+        <select>
+          <option v-for="c in countiesData" :key="c.id">
+            {{ c.name }}
+          </option>
+        </select>
       </b-field>
 
       <p v-for="err in errors" :key="err" class="error">{{ err }}</p>
@@ -41,8 +39,6 @@ export default {
       errors: [],
       provincesData: null,
       countiesData: null,
-      province: null,
-      provinceId: null,
     }
   },
   beforeCreate() {},
@@ -57,22 +53,18 @@ export default {
       this.$bypropAPI
         .province()
         .then((res) => {
-          this.provincesData = res.data.map(function (item) {
-            return { value: item.id, label: item.name }
-          })
+          this.provincesData = res.data
         })
         .catch(() => {
           this.errors = ["province API Error"]
         })
     },
     loadCountiesData(selectedIndex) {
-      let provinceId = this.provincesData[selectedIndex - 1].value
+      let provinceId = this.provincesData[selectedIndex].id
       this.$bypropAPI
         .county(provinceId)
         .then((res) => {
-          this.countiesData = res.data.map(function (item) {
-            return { value: item.id, label: item.name }
-          })
+          this.countiesData = res.data
         })
         .catch(() => {
           this.errors = ["county API Error"]
