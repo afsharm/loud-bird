@@ -33,12 +33,12 @@
       <div class="navbar-end">
         <span v-if="!isLoggedIn" class="navbar-item">
           <a class="navbar-item button accNav" @click="openProvince()"
-          >Province</a
+          >Register load</a
           >
-          <a class="navbar-item button accNav is-info" @click="openSignup()">
+          <!-- <a class="navbar-item button accNav is-info" @click="openSignup()">
             Sign Up</a
           >
-          <a class="navbar-item button accNav" @click="openLogin()">Log In</a>
+          <a class="navbar-item button accNav" @click="openLogin()">Log In</a> -->
         </span>
 
         <div v-if="isLoggedIn" class="navbar-item has-dropdown is-hoverable">

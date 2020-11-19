@@ -4,71 +4,71 @@ const routes = [
     name: "index",
     component: () => lazyLoadView(import("@/views/index-page")),
   },
-  {
-    path: "/about",
-    name: "about",
-    component: () => lazyLoadView(import("@/views/about-page")),
-  },
-  {
-    path: "/contact",
-    name: "contact",
-    component: () => lazyLoadView(import("@/views/contact-page")),
-  },
-  {
-    path: "/account",
-    name: "account",
-    component: () => lazyLoadView(import("@/views/account-page")),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: "/signup",
-    name: "signup",
-    component: () => lazyLoadView(import("@/views/signup-page")),
-    meta: {
-      redirectIfAuthenticated: true,
-    },
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: () => lazyLoadView(import("@/views/login-page")),
-    meta: {
-      redirectIfAuthenticated: true,
-    },
-  },
-  {
-    path: "/accounts",
-    name: "accounts",
-    component: () => lazyLoadView(import("@/views/accounts-page")),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: "/confirm-account/:token",
-    name: "confirm",
-    component: () => lazyLoadView(import("@/views/confirm-page")),
-    props: true,
-  },
-  {
-    path: "/reset",
-    name: "reset",
-    component: () => lazyLoadView(import("@/views/init-reset-page")),
-    props: true,
-    meta: {
-      redirectIfAuthenticated: true,
-    },
-  },
-  {
-    path: "/reset/:token",
-    name: "resetToken",
-    component: () => lazyLoadView(import("@/views/reset-page")),
-    meta: {
-      redirectIfAuthenticated: true,
-    },
-  },
+  // {
+  //   path: "/about",
+  //   name: "about",
+  //   component: () => lazyLoadView(import("@/views/about-page")),
+  // },
+  // {
+  //   path: "/contact",
+  //   name: "contact",
+  //   component: () => lazyLoadView(import("@/views/contact-page")),
+  // },
+  // {
+  //   path: "/account",
+  //   name: "account",
+  //   component: () => lazyLoadView(import("@/views/account-page")),
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
+  // {
+  //   path: "/signup",
+  //   name: "signup",
+  //   component: () => lazyLoadView(import("@/views/signup-page")),
+  //   meta: {
+  //     redirectIfAuthenticated: true,
+  //   },
+  // },
+  // {
+  //   path: "/login",
+  //   name: "login",
+  //   component: () => lazyLoadView(import("@/views/login-page")),
+  //   meta: {
+  //     redirectIfAuthenticated: true,
+  //   },
+  // },
+  // {
+  //   path: "/accounts",
+  //   name: "accounts",
+  //   component: () => lazyLoadView(import("@/views/accounts-page")),
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
+  // {
+  //   path: "/confirm-account/:token",
+  //   name: "confirm",
+  //   component: () => lazyLoadView(import("@/views/confirm-page")),
+  //   props: true,
+  // },
+  // {
+  //   path: "/reset",
+  //   name: "reset",
+  //   component: () => lazyLoadView(import("@/views/init-reset-page")),
+  //   props: true,
+  //   meta: {
+  //     redirectIfAuthenticated: true,
+  //   },
+  // },
+  // {
+  //   path: "/reset/:token",
+  //   name: "resetToken",
+  //   component: () => lazyLoadView(import("@/views/reset-page")),
+  //   meta: {
+  //     redirectIfAuthenticated: true,
+  //   },
+  // },
   {
     path: "/404",
     name: "pageNotFound",

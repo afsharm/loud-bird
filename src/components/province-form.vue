@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title has-text-centered">Province/County</h1>
+    <h1 class="title has-text-centered">Register a load</h1>
     <form id="provinceform" @submit.prevent="login">
       <b-field label="Province">
         <select
