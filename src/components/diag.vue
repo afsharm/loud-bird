@@ -2,9 +2,36 @@
   <div>
     <h1 class="title has-text-centered">Diag</h1>
     <form id="diagform" @submit.prevent="login">
-      <b-field label="base_url">
-        <span>{{ baseURL }}</span>
-      </b-field>
+      <table>
+        <tr>
+          <td>host:</td>
+          <td>{{ host }}</td>
+        </tr>
+        <tr>
+          <td>downlink:</td>
+          <td>{{ downlink }}</td>
+        </tr>
+        <tr>
+          <td>product:</td>
+          <td>{{ product }}</td>
+        </tr>
+        <tr>
+          <td>appName:</td>
+          <td>{{ appName }}</td>
+        </tr>
+        <tr>
+          <td>onLine:</td>
+          <td>{{ onLine }}</td>
+        </tr>
+        <tr>
+          <td>deviceMemory:</td>
+          <td>{{ deviceMemory }}</td>
+        </tr>
+        <tr>
+          <td>hardwareConcurrency:</td>
+          <td>{{ hardwareConcurrency }}</td>
+        </tr>
+      </table>
       <p v-for="err in errors" :key="err" class="error">{{ err }}</p>
     </form>
   </div>
@@ -18,7 +45,13 @@ export default {
   data() {
     return {
       errors: [],
-      baseURL: `${process.env.BASE_URL}`,
+      host: window.location.host,
+      downlink: navigator.connection.downlink,
+      product: navigator.product,
+      appName: navigator.appName,
+      onLine: navigator.onLine,
+      deviceMemory: navigator.deviceMemory,
+      hardwareConcurrency: navigator.hardwareConcurrency,
     }
   },
   beforeCreate() {},
