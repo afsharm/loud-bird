@@ -35,6 +35,7 @@
           <a class="navbar-item button accNav" @click="openRegisterLoad()"
           >Register load</a
           >
+          <a class="navbar-item button accNav" @click="openDiag()">Diag</a>
           <!-- <a class="navbar-item button accNav is-info" @click="openSignup()">
             Sign Up</a
           >
@@ -96,6 +97,9 @@ export default {
     },
     openRegisterLoad() {
       this.modalComp = () => import("@/components/register-load-form")
+    },
+    openDiag() {
+      this.modalComp = () => import("@/components/diag")
     },
     openLogin() {
       this.modalComp = () => import("@/components/login-form")
