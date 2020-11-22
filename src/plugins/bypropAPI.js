@@ -2,7 +2,7 @@ import axios from "axios"
 
 const HTTP = () => {
   return axios.create({
-    baseURL: "http://192.168.1.7:3005",
+    baseURL: "https://byprop.herokuapp.com",
   })
 }
 
