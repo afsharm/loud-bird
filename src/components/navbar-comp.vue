@@ -96,7 +96,7 @@ export default {
       this.modalComp = () => import("@/components/signup-form")
     },
     openRegisterLoad() {
-      this.modalComp = () => import("@/components/register-load-form")
+      this.modalComp = () => import("@/components/reg-load")
     },
     openDiag() {
       this.modalComp = () => import("@/components/diag")
