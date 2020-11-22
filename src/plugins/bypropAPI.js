@@ -23,6 +23,13 @@ const bypropFunctions = {
         return res
       })
   },
+  all_county: function () {
+    return HTTP()
+      .get(`/v1/common/allcounty`)
+      .then((res) => {
+        return res
+      })
+  },
 }
 
 export default {
