@@ -39,6 +39,7 @@ export default {
       errors: [],
       provincesData: null,
       countiesData: null,
+      all_county: null,
     }
   },
   beforeCreate() {},
@@ -51,10 +52,10 @@ export default {
       let res = this.load_internal()
 
       if (res === null) {
-        let res = await this.$bypropAPI.all_county()
-        localStorage.setItem("counties", JSON.stringify(res.data))
+        let all_county_res = await this.$bypropAPI.all_county()
+        localStorage.setItem("counties", JSON.stringify(all_county_res.data))
         localStorage.setItem("counties_time", new Date())
-        res = res.data
+        res = all_county_res.data
       }
 
       this.all_county = res
